@@ -1,0 +1,513 @@
+/* ================================================
+   ALTAR DE MUERTOS — estilos
+   Paleta: rojo sangre + cempasúchil + noche profunda
+   Altar de 3 pisos con velas en cada escalón
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+    /* TODO 4: Elige el color de tu ofrenda cambiando el valor de --acento. 
+       Opciones: #e63946 (rojo), #f1faee (blanco), #a8dadc (celeste), #457b9d (azul), #1d3557 (marino) */
+    --acento: #e63946;
+
+    --rojo-oscuro: #8b1a1a;
+    --rojo-sangre: #c1121f;
+    --cempasuchil: #f4a300;
+    --cempasuchil-claro: #ffcb47;
+    --fondo: #120507;
+    --madera: #2a0d0f;
+    --madera-clara: #4a1a1c;
+    --texto: #fff3e0;
+    --papel: #fff8ee;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--fondo);
+    background-image:
+        radial-gradient(ellipse at 50% 110%, rgba(193, 18, 31, 0.45) 0%, transparent 60%),
+        radial-gradient(circle at 15% 20%, rgba(244, 163, 0, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(244, 163, 0, 0.08) 0%, transparent 35%);
+    color: var(--texto);
+    font-family: 'Lora', Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 5rem 1rem 2rem;
+    overflow-x: hidden;
+}
+
+/* ---------- Papel picado colgando arriba ---------- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    z-index: 10;
+    background:
+        linear-gradient(135deg, var(--acento) 25%, transparent 25%) 0 42px / 28px 14px repeat-x,
+        linear-gradient(225deg, var(--acento) 25%, transparent 25%) 0 42px / 28px 14px repeat-x,
+        repeating-linear-gradient(90deg,
+            var(--acento) 0 84px,
+            var(--cempasuchil) 84px 168px,
+            var(--rojo-oscuro) 168px 252px) 0 0 / 252px 42px repeat-x;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6));
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 42px;
+    z-index: 11;
+    background:
+        radial-gradient(circle, var(--fondo) 3px, transparent 3.5px) 0 0 / 14px 14px,
+        radial-gradient(circle, var(--fondo) 2px, transparent 2.5px) 7px 7px / 14px 14px;
+    opacity: 0.85;
+    mask-image: linear-gradient(to bottom, transparent 0 4px, black 4px 38px, transparent 38px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0 4px, black 4px 38px, transparent 38px);
+}
+
+/* ---------- La ofrenda (contenedor) ---------- */
+.ofrenda {
+    width: 100%;
+    max-width: 860px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------- Título ---------- */
+header h1 {
+    font-family: 'Rye', 'Alfa Slab One', serif;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+    color: var(--cempasuchil-claro);
+    text-shadow:
+        0 0 18px rgba(244, 163, 0, 0.5),
+        2px 2px 0 var(--rojo-oscuro),
+        4px 4px 0 rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.02em;
+}
+
+header h1::after {
+    content: "✿ ✦ ✿";
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.6em;
+    color: var(--acento);
+    margin-top: 0.6rem;
+    text-shadow: none;
+}
+
+/* ---------- Los pisos del altar ---------- */
+/* Cada piso: una repisa de madera con mantel bordado.
+   Cada piso es más ancho que el de arriba. */
+.piso {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 0.6rem;
+    background:
+        linear-gradient(180deg, rgba(193, 18, 31, 0.22) 0%, rgba(18, 5, 7, 0.55) 100%),
+        var(--madera);
+    border: 3px solid var(--acento);
+    border-bottom: none;
+    border-radius: 14px 14px 0 0;
+    box-shadow:
+        0 0 0 5px var(--fondo),
+        0 0 0 7px var(--cempasuchil),
+        0 20px 40px rgba(0, 0, 0, 0.7),
+        inset 0 0 50px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.8s ease;
+    /* la repisa de enfrente deja espacio para flores */
+    margin-bottom: 30px;
+}
+
+/* Los pisos de abajo quedan ENFRENTE de los de arriba,
+   así las llamas de las velas nunca se tapan con el escalón de arriba. */
+.cima   { width: 36%;  z-index: 1; padding: 1.2rem 1rem 0.4rem; justify-content: center; }
+.piso-1 { width: 62%;  z-index: 2; }
+.piso-2 { width: 82%;  z-index: 3; }
+.piso-3 { width: 100%; z-index: 4; margin-bottom: 0; }
+
+.velas--centro { gap: 0.5rem; }
+
+/* mantel bordado (línea punteada interior) */
+.piso::before {
+    content: "";
+    position: absolute;
+    inset: 8px 8px 0;
+    border: 1px dashed rgba(244, 163, 0, 0.55);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    pointer-events: none;
+}
+
+/* el frente de la repisa con flores de cempasúchil */
+.piso::after {
+    content: "✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿";
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    bottom: -30px;
+    height: 30px;
+    line-height: 30px;
+    background: linear-gradient(180deg, var(--rojo-sangre) 0%, var(--rojo-oscuro) 100%);
+    border-top: 3px solid var(--cempasuchil);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
+    color: var(--cempasuchil);
+    text-shadow: 0 0 8px rgba(244, 163, 0, 0.7);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.piso-3::after {
+    bottom: -34px;
+    height: 34px;
+    line-height: 34px;
+}
+
+/* ---------- Foto con marco (más pequeña) ---------- */
+.contenedor-foto {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto 0.5rem;
+    flex: 0 0 auto;
+}
+
+.contenedor-foto img {
+    display: block;
+    width: min(140px, 34vw);
+    height: min(140px, 34vw);
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--acento);
+    box-shadow:
+        0 0 0 3px var(--madera),
+        0 0 0 6px var(--cempasuchil),
+        0 0 30px rgba(193, 18, 31, 0.5);
+    filter: sepia(0.25) contrast(1.05);
+    transition: filter 0.8s ease, box-shadow 0.8s ease;
+}
+
+.contenedor-foto::before,
+.contenedor-foto::after {
+    content: "✿";
+    position: absolute;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--cempasuchil);
+    text-shadow: 0 0 12px rgba(244, 163, 0, 0.7), 0 2px 0 var(--rojo-oscuro);
+}
+.contenedor-foto::before { top: -4px; left: -10px; transform: rotate(-20deg); }
+.contenedor-foto::after  { bottom: 2px; right: -10px; transform: rotate(25deg); }
+
+/* ---------- Dedicatoria ---------- */
+.dedicatoria {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.8s ease;
+    margin: 0 auto 0.5rem;
+    max-width: 360px;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--papel);
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 248, 238, 0.06);
+    border-left: 3px solid var(--acento);
+    border-right: 3px solid var(--acento);
+}
+
+.dedicatoria p { margin: 0; }
+
+.ofrenda.encendida .dedicatoria {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Las velas ---------- */
+/* Grupo de velas en cada lado del piso */
+.velas {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.7rem;
+    flex: 0 0 auto;
+}
+
+/* Una vela: su tamaño se controla con font-size (todo está en em) */
+.vela {
+    position: relative;
+    font-size: 10px;
+    width: 3em;
+    height: 8em;
+    background: linear-gradient(90deg, #fff1d6 0%, #fffaf0 40%, #e8d5b5 100%);
+    border-radius: 0.6em 0.6em 0.3em 0.3em;
+    box-shadow:
+        inset -0.6em 0 1em rgba(0, 0, 0, 0.15),
+        0 0.8em 1.6em rgba(0, 0, 0, 0.5);
+}
+
+.vela--chica { font-size: 8px; }
+.vela--media { font-size: 11px; }
+.vela--alta  { font-size: 12px; height: 10em; }
+
+/* cera derretida arriba */
+.vela::before {
+    content: "";
+    position: absolute;
+    top: -0.5em;
+    left: -0.25em;
+    right: -0.25em;
+    height: 1.2em;
+    background: #fffaf0;
+    border-radius: 50%;
+    box-shadow: 0 0.2em 0 rgba(0, 0, 0, 0.1);
+}
+
+/* pabilo */
+.vela::after {
+    content: "";
+    position: absolute;
+    top: -1.3em;
+    left: 50%;
+    width: 0.3em;
+    height: 1.1em;
+    margin-left: -0.15em;
+    background: #2b1a0e;
+    border-radius: 0.2em;
+}
+
+.vela-llama {
+    display: none;
+    position: absolute;
+    top: -4.2em;
+    left: 50%;
+    width: 2em;
+    height: 3.6em;
+    margin-left: -1em;
+    background: radial-gradient(ellipse at 50% 80%,
+        #fff7c2 0%,
+        var(--cempasuchil-claro) 30%,
+        #ff7a00 65%,
+        var(--rojo-sangre) 100%);
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    transform-origin: 50% 100%;
+    box-shadow:
+        0 0 1.8em #ff9f1a,
+        0 0 4.5em rgba(244, 163, 0, 0.7),
+        0 0 10em rgba(193, 18, 31, 0.6);
+    z-index: 1;
+}
+
+.ofrenda.encendida .vela-llama {
+    display: block;
+    animation: parpadeo 0.9s infinite alternate ease-in-out;
+}
+
+/* cada vela parpadea a su ritmo */
+.vela:nth-child(2) .vela-llama { animation-delay: -0.3s; animation-duration: 1.1s; }
+.vela:nth-child(3) .vela-llama { animation-delay: -0.6s; animation-duration: 0.8s; }
+.vela:nth-child(4) .vela-llama { animation-delay: -0.15s; animation-duration: 1s; }
+
+@keyframes parpadeo {
+    0%   { transform: scaleX(1) scaleY(1) rotate(-2deg);  filter: brightness(1); }
+    35%  { transform: scaleX(0.9) scaleY(1.08) rotate(2deg); filter: brightness(1.2); }
+    70%  { transform: scaleX(1.05) scaleY(0.95) rotate(-1deg); filter: brightness(1.05); }
+    100% { transform: scaleX(0.95) scaleY(1.12) rotate(3deg); filter: brightness(1.4); }
+}
+
+/* ---------- Huesos y croquetas para Toronto ---------- */
+/* Hueso: una barra con dos bolitas en cada extremo (todo en em) */
+.hueso {
+    position: relative;
+    font-size: 10px;
+    width: 4.6em;
+    height: 1.3em;
+    margin: 0 0.5em 0.5em;
+    background: linear-gradient(180deg, #fffaf0 0%, #e8d5b5 100%);
+    border-radius: 0.65em;
+    box-shadow: 0 0.5em 0.9em rgba(0, 0, 0, 0.55);
+    align-self: flex-end;
+    flex: 0 0 auto;
+    transform: rotate(-8deg);
+}
+
+.hueso--grande { font-size: 13px; transform: rotate(6deg); }
+
+.hueso::before,
+.hueso::after {
+    content: "";
+    position: absolute;
+    top: -0.55em;
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #fffaf0 0%, #e8d5b5 100%);
+    box-shadow:
+        0 1em 0 #ecdcbf,
+        0 1.4em 0.6em rgba(0, 0, 0, 0.3);
+}
+.hueso::before { left: -0.55em; }
+.hueso::after  { right: -0.55em; }
+
+/* Plato de croquetas: un tazón rojo con un montoncito de croquetas */
+.plato {
+    position: relative;
+    font-size: 10px;
+    width: 6.4em;
+    height: 2.6em;
+    margin: 0 0.4em 0.2em;
+    background: linear-gradient(180deg, var(--acento) 0%, var(--rojo-oscuro) 100%);
+    border-top: 0.35em solid var(--cempasuchil);
+    border-radius: 0.4em 0.4em 3.2em 3.2em / 0.4em 0.4em 2.4em 2.4em;
+    box-shadow:
+        inset 0 -0.6em 1em rgba(0, 0, 0, 0.35),
+        0 0.6em 1em rgba(0, 0, 0, 0.55);
+    align-self: flex-end;
+    flex: 0 0 auto;
+}
+
+.plato--grande { font-size: 14px; }
+
+/* las croquetas: un montoncito café con bolitas */
+.plato::before {
+    content: "";
+    position: absolute;
+    left: 0.4em;
+    right: 0.4em;
+    top: -1.5em;
+    height: 1.9em;
+    border-radius: 50% 50% 30% 30%;
+    background:
+        radial-gradient(circle, #b8692c 0.28em, transparent 0.34em) 0 0 / 0.9em 0.8em,
+        radial-gradient(circle, #5a2d10 0.2em, transparent 0.26em) 0.45em 0.4em / 0.9em 0.8em,
+        #8a4a1e;
+    box-shadow: inset 0 -0.3em 0.5em rgba(0, 0, 0, 0.4);
+}
+
+/* nombre en el plato */
+.plato::after {
+    content: "TORONTO";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0.5em;
+    font-family: 'Rye', serif;
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    color: var(--cempasuchil-claro);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Todo el altar se ilumina al encender ---------- */
+.ofrenda.encendida .piso {
+    box-shadow:
+        0 0 0 5px var(--fondo),
+        0 0 0 7px var(--cempasuchil),
+        0 20px 40px rgba(0, 0, 0, 0.7),
+        0 0 80px rgba(244, 163, 0, 0.3),
+        inset 0 0 50px rgba(193, 18, 31, 0.35);
+}
+
+.ofrenda.encendida .contenedor-foto img {
+    filter: sepia(0) contrast(1);
+    box-shadow:
+        0 0 0 3px var(--madera),
+        0 0 0 6px var(--cempasuchil),
+        0 0 50px rgba(244, 163, 0, 0.6);
+}
+
+/* ---------- Botón ---------- */
+#boton-vela {
+    font-family: 'Rye', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    padding: 0.8rem 1.8rem;
+    cursor: pointer;
+    color: var(--texto);
+    background: linear-gradient(180deg, var(--acento) 0%, var(--rojo-oscuro) 100%);
+    border: 2px solid var(--cempasuchil);
+    border-radius: 999px;
+    box-shadow:
+        0 4px 0 #4a0a0e,
+        0 8px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.2s ease;
+    margin-bottom: 0.8rem;
+    white-space: nowrap;
+}
+
+#boton-vela:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 0 #4a0a0e,
+        0 12px 24px rgba(0, 0, 0, 0.6),
+        0 0 24px rgba(244, 163, 0, 0.3);
+}
+
+#boton-vela:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #4a0a0e, 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+#boton-vela:focus-visible {
+    outline: 3px solid var(--cempasuchil-claro);
+    outline-offset: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .piso { padding: 1.2rem 0.8rem 0.5rem; gap: 0.5rem; }
+    .cima   { width: 56%; }
+    .piso-1 { width: 80%; }
+    .piso-2 { width: 92%; }
+    .velas { gap: 0.4rem; }
+    .velas--centro .vela--chica { display: none; }
+    .velas--centro .hueso { display: none; }
+
+    /* En pisos 2 y 3: el texto y el botón arriba a todo lo ancho,
+       y las velas en una fila abajo */
+    .piso-2, .piso-3 { flex-wrap: wrap; justify-content: space-around; }
+    .piso-2 .dedicatoria,
+    .piso-3 #boton-vela { flex: 1 1 100%; order: -1; max-width: none; margin-bottom: 1rem; }
+    .piso-2 .velas, .piso-3 .velas { flex: 0 1 auto; }
+    .hueso { font-size: 8px; }
+    .plato { font-size: 8px; }
+    .plato--grande { font-size: 10px; }
+    .hueso--grande { font-size: 10px; }
+    .vela--extra { display: none; }
+    .dedicatoria { font-size: 0.95rem; padding: 0.7rem 0.8rem; }
+    #boton-vela { font-size: 0.9rem; padding: 0.7rem 1.2rem; }
+}
+
+@media (max-width: 420px) {
+    .cima   { width: 64%; }
+    .piso-1 { width: 92%; }
+    .piso-2 { width: 100%; }
+    .vela { font-size: 7px; }
+    .vela--alta { font-size: 9px; }
+    .vela--media { font-size: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ofrenda.encendida .vela-llama { animation: none; }
+}

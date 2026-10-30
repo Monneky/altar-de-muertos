@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altar de Muertos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="ofrenda" id="ofrenda">
+        <header>
+            <h1>Para Toronto</h1>
+        </header>
+
+        <!-- ===== LA CIMA: la foto de Toronto ===== -->
+        <section class="piso cima">
+            <div class="contenedor-foto">
+                <img src="foto.jpg" alt="Toronto, mi perrito chow chow">
+            </div>
+        </section>
+
+        <!-- ===== PISO 1 (arriba): velas ===== -->
+        <section class="piso piso-1">
+            <div class="velas" aria-hidden="true">
+                <div class="vela vela--alta"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+            </div>
+
+            <div class="velas velas--centro" aria-hidden="true">
+                <div class="hueso"></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="vela vela--media"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="hueso"></div>
+            </div>
+
+            <div class="velas" aria-hidden="true">
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="vela vela--alta"><div class="vela-llama"></div></div>
+            </div>
+        </section>
+
+        <!-- ===== PISO 2 (medio): la dedicatoria ===== -->
+        <section class="piso piso-2">
+            <div class="velas" aria-hidden="true">
+                <div class="vela vela--media"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="vela vela--alta vela--extra"><div class="vela-llama"></div></div>
+                <div class="plato"></div>
+            </div>
+
+            <div class="dedicatoria" id="dedicatoria">
+                    <p>Toronto, gracias por cada bolsa de basura que rompiste, por cada ladrido y por cada vez que me recibiste moviendo la cola. Siempre vas a tener tu lugar en esta casa y en mi corazón.</p>
+            </div>
+
+            <div class="velas" aria-hidden="true">
+                <div class="hueso"></div>
+                <div class="vela vela--alta vela--extra"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="vela vela--media"><div class="vela-llama"></div></div>
+            </div>
+        </section>
+
+        <!-- ===== PISO 3 (abajo): el botón ===== -->
+        <section class="piso piso-3">
+            <div class="velas" aria-hidden="true">
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+                <div class="vela vela--alta"><div class="vela-llama"></div></div>
+                <div class="vela vela--media vela--extra"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica vela--extra"><div class="vela-llama"></div></div>
+                <div class="hueso hueso--grande"></div>
+            </div>
+
+            <button id="boton-vela" aria-pressed="false">
+                Encender las velas
+            </button>
+
+            <div class="velas" aria-hidden="true">
+                <div class="plato plato--grande"></div>
+                <div class="vela vela--chica vela--extra"><div class="vela-llama"></div></div>
+                <div class="vela vela--media vela--extra"><div class="vela-llama"></div></div>
+                <div class="vela vela--alta"><div class="vela-llama"></div></div>
+                <div class="vela vela--chica"><div class="vela-llama"></div></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
